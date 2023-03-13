@@ -1,0 +1,2 @@
+#!/bin/bash
+ls -tU | tail -n 10 | tac
