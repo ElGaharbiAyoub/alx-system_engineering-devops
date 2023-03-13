@@ -1,2 +1,2 @@
 #!/bin/bash
-ls -tU | tail -n 10 | tac
+ls -1t | head
