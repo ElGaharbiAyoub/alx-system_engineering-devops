@@ -1,0 +1,3 @@
+# shell variables expansions
+
+welcome 
