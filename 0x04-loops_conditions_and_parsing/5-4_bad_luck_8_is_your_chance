@@ -1,0 +1,15 @@
+#!/usr/bin/env bash
+# This script is displaying "Best School", "bad School" and "Good School"
+# using while loop, if, elif, and else.
+count=1
+while [ $count -ne 11 ]
+do
+    if [ $count -eq 4 ]; then
+	echo "bad luck"
+    elif [ $count -eq 8 ]; then
+	echo "good luck"
+    else
+	echo "Best School"
+    fi
+    ((count++))
+done
