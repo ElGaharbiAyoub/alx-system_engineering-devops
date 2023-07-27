@@ -2,6 +2,6 @@
 # This script is displaying "Best School" 10 times
 while ((count<10))
 do
-    echo "best School"
+    echo "Best School"
     ((count++))
 done
