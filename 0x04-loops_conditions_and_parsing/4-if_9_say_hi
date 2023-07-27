@@ -1,7 +1,7 @@
 #!/usr/bin/env bash
 # This script is displaying "Best School" 9 times and after the last one "Hi"
 count=0
-while ((count<10))
+while ((count<11))
 do
     if ((count == 8))
     then
