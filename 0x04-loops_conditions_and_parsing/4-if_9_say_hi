@@ -3,7 +3,7 @@
 count=0
 while ((count<11))
 do
-    if ((count == 8))
+    if ((count == 9))
     then
 	echo "Hi"
     else
