@@ -1,0 +1,8 @@
+#!/usr/bin/env bash
+# cript that isplays infinity and beyond forever , I am invincible!!!
+trap "echo 'I am invincible!!!'" SIGTERM
+while true
+do
+    echo "To infinity and beyond"
+    sleep 2
+done
