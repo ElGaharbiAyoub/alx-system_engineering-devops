@@ -1,6 +1,7 @@
 #!/usr/bin/env bash
 #is host on network?
-if [ "$1" ]
+
+if [ $# -gt 0 ]
 then
     ping -c 5 "$1"
 else
