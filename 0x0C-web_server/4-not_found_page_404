@@ -6,7 +6,10 @@ sudo apt-get -y install nginx
 file=/var/www/html/index.html
 file1=/etc/nginx/sites-available/default
 sudo bash -c "echo 'Hello World!' > $file"
-service nginx start
+sudo service nginx start
 phrase="location /redirect_me {\nreturn 301 https://www.youtube.com/watch?v=QH2-TGUlwu4;\n}\n"
 sudo sed -i "30i $phrase" $file1
+echo "Ceci n'est pas une page" | sudo tee /var/www/html/custom_404.html
+phrase2="error_page 404 /custom_404.html;\nlocation = /custom_404.html {\nroot /var/www/html;\ninternal;\n\t\t# hello i am ayoub \n\t\n}\n"
+sudo sed -i "30i $phrase2" $file1
 sudo service nginx restart
