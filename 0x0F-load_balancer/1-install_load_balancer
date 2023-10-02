@@ -3,11 +3,7 @@
 sudo apt-get -y update
 sudo apt-get -y install haproxy
 sudo sed -i "9i ENABLED=1" /etc/default/haproxy
-cat >> /etc/haproxy/haproxy.cfg <<EOF
-
-defaults
-    mode http
-    balance roundrobin
+sudo cat >> /etc/haproxy/haproxy.cfg <<EOF
 
 frontend ayoub_fronend
     bind *:80
@@ -15,6 +11,7 @@ frontend ayoub_fronend
     default_backend ayoub_backend
 
 backend ayoub_backend
+    balance roundrobin
     server 395564-web-01 54.146.56.232:80 check
     server 395564-web-02 34.207.58.85:80 check
 
