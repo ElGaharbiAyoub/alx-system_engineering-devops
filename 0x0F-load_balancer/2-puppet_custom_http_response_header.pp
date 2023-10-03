@@ -13,7 +13,7 @@ package { 'nginx':
 file_line { 'add HTTP header':
   ensure => 'present',
   path   => '/etc/nginx/sites-available/default',
-  before => 'listen 80 default_server;',
+  after  => 'server_name _;',
   line   => 'add_header X-Served-By $HOSTNAME;'
 }
 
