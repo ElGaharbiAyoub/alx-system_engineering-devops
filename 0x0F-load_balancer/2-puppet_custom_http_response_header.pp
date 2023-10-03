@@ -1,15 +1,7 @@
 # config nginx
-exec { 'update_server':
-  command  => '/usr/bin/apt-get -y update',
-  user     => 'root',
-  path     => ['/usr/bin'],
-  creates  => '/var/lib/apt/periodic/update-success-stamp',
-  require  => Package['nginx'], # Ensure nginx is installed first
-}
-
-package { 'nginx':
-  ensure   => present,
-  provider => 'apt'
+# Install Nginx package
+class { 'nginx':
+  ensure => 'installed',
 }
 
 file_line { 'add_http_header':
@@ -17,7 +9,7 @@ file_line { 'add_http_header':
   path    => '/etc/nginx/sites-available/default',
   line    => 'add_header X-Served-By $::hostname;',
   after   => 'server_name _;',
-  require => Exec['update_server'],
+  require => Class['nginx'],
   notify  => Service['nginx'],
 }
 
