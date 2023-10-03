@@ -1,24 +1,40 @@
-# config nginx
-exec { 'update server':
-  command  => 'apt-get update',
-  user     => 'root',
-  provider => 'shell',
+# install nginx
+package { 'nginx':
+  ensure => installed,
 }
 
-package { 'nginx':
-  ensure   => present,
-  provider => 'apt'
+# website index file
+file { '/var/www/html/index.html':
+  content => 'Hello World!',
+}
+
+# redirect_me config
+file_line { 'redirect_me':
+  ensure => present,
+  path   => '/etc/nginx/sites-available/default',
+  after  => 'server_name _;',
+  line   => '
+        location /redirect_me {
+            return 301 https://www.youtube.com/watch?v=QH2-TGUlwu4;
+            # hello I am ayoub
+        }',
 }
 
 file_line { 'add HTTP header':
-  ensure => 'present',
+  ensure => present,
   path   => '/etc/nginx/sites-available/default',
   after  => 'server_name _;',
   line   => 'add_header X-Served-By $HOSTNAME;'
 }
 
-service { 'nginx':
-  ensure  => 'running',
-  enable  => true,
-  require => Package['nginx']
+# stop nginx
+exec { 'stop service':
+  command => 'sudo service nginx stop',
+  path    => ['/bin', '/usr/bin', '/usr/sbin'],
+}
+
+# run nginx
+exec { 'start service':
+  command => 'sudo service nginx start',
+  path    => ['/bin', '/usr/bin', '/usr/sbin'],
 }
