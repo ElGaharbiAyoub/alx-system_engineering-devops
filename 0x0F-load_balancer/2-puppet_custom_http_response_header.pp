@@ -15,7 +15,7 @@ package { 'nginx':
 file_line { 'add_http_header':
   ensure  => present,
   path    => '/etc/nginx/sites-available/default',
-  line    => 'add_header X-Served-By $HOSTNAME;',
+  line    => 'add_header X-Served-By $::hostname;',
   after   => 'server_name _;',
   require => Exec['update_server'],
   notify  => Service['nginx'],
