@@ -2,4 +2,4 @@
 #change the default port for nginx
 sed -i 's/8080 default/80 default/' /etc/nginx/sites-enabled/default
 sudo service nginx restart
-sudo service nginx stop
+pkill -o nginx
