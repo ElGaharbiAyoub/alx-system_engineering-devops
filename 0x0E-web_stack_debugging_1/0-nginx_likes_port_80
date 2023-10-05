@@ -1,5 +1,6 @@
 #!/usr/bin/env bash
 #change
-file=/etc/nginx/sites-enabled/default
-sudo sed -i 's/8080 default/80 default/' $file
+file1=/etc/nginx/sites-enabled/default
+file2=/etc/nginx/sites-available/default
+sudo ln -sf $file2 $file1
 sudo service nginx restart
