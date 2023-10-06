@@ -1,1 +1,11 @@
 #!/usr/bin/env bash
+frontend ayoub_fronend_https
+        bind *:80
+        bind *:443 ssl crt /etc/haproxy/certs/www.ayoubelgharbi.tech.pem
+        redirect scheme https code 301 if !{ ssl_fc }
+        default_backend ayoub_backend
+
+backend ayoub_backend
+        balance roundrobin
+        server 395564-web-01 54.146.56.232:80 check
+        server 395564-web-02 34.207.58.85:80 check
