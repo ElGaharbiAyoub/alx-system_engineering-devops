@@ -10,7 +10,7 @@ def exportToCSV(userId):
         .format(userId)
     url_name = "https://jsonplaceholder.typicode.com/users/{}".format(userId)
     tasks = requests.get(url_tasks).json()
-    name = requests.get(url_name).json().get("name")
+    name = requests.get(url_name).json().get("username")
 
     if name and tasks:
         csv_file = "{}.csv".format(userId)
