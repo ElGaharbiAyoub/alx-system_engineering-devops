@@ -11,8 +11,6 @@ def exportToCSV(userId):
     url_name = "https://jsonplaceholder.typicode.com/users/{}".format(userId)
     tasks = requests.get(url_tasks).json()
     name = requests.get(url_name).json().get("name")
-    tasksDone = ['\t {}\n'.format(dic.get('title')) for dic in tasks
-                 if dic.get('completed')]
 
     if name and tasks:
         csv_file = "{}.csv".format(userId)
