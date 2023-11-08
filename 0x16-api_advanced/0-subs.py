@@ -1,5 +1,5 @@
 #!/usr/bin/python3
-
+"""Get the number of subscribers for a subreddit."""
 import requests
 
 
@@ -10,9 +10,7 @@ def number_of_subscribers(subreddit):
 
     try:
         response = requests.get(url, headers=headers)
-        response.raise_for_status()  # Check for any HTTP errors
         data = response.json()
         return data['data']['subscribers']
     except requests.exceptions.RequestException as e:
-        print("Error:", e)
         return 0
