@@ -15,7 +15,7 @@ def top_ten(subreddit):
             "limit": 10
             }
     response = requests.get(url, params=params, headers=headers,
-                                allow_redirects=False).json()
+                            allow_redirects=False).json()
     data = response.get("data", {}).get("children", None)
     if data:
         for topic in data:
