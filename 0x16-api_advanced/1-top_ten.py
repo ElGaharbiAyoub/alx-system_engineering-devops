@@ -14,12 +14,11 @@ def top_ten(subreddit):
     params = {
             "limit": 10
             }
-
-    try:
-        response = requests.get(url, params=params, headers=headers,
+    response = requests.get(url, params=params, headers=headers,
                                 allow_redirects=False).json()
-        data = response.get("data", {}).get("children", None)
+    data = response.get("data", {}).get("children", None)
+    if data:
         for topic in data:
             print(topic.get("data").get("title"))
-    except requests.exceptions.RequestException as e:
+    else:
         print("None")
